@@ -1,0 +1,16 @@
+server:
+  http_port: 8080
+  grpc_port: 9090
+
+snowflake:
+  worker_id: 1
+  datacenter_id: 1
+  start_time: "2024-01-01T00:00:00Z"
+
+segment:
+  db:
+    host: "localhost"
+    port: 3306
+    user: "root"
+    password: "password"
+    database: "goloves"

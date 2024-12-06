@@ -8,18 +8,36 @@
 
 ```
 Goloves/
-├── cmd/                    # 启动服务的主程序
-│   └── main.go
-├── config/                 # 配置文件及加载
-│   └── config.go
-├── internal/               # 内部逻辑
-│   ├── segment/            # Segment 模式实现
-│   ├── snowflake/          # Snowflake 模式实现
-│   ├── rpc/                # RPC 服务接口
-│   └── util/               # 工具函数
-├── tests/                  # 测试用例
-├── docs/                   # 文档和说明
-└── go.mod                  # 依赖管理
+├── cmd/                    # Application entry points
+│   └── idgen/             
+│       └── main.go        # Main application entry
+├── internal/              # Private application code
+│   ├── domain/           # Enterprise business rules
+│   │   ├── entity/       # Core business entities
+│   │   └── generator/    # ID generation algorithms
+│   ├── usecase/          # Application business rules
+│   │   └── idgen/        # ID generation use cases
+│   ├── repository/       # Data access layer
+│   │   └── segment/      # Segment mode storage
+│   └── delivery/         # External interfaces
+│       ├── http/         # HTTP handlers
+│       └── grpc/         # gRPC handlers
+├── pkg/                  # Public libraries
+│   ├── errors/          # Error handling
+│   └── utils/           # Utility functions
+├── configs/             # Configuration files
+├── api/                 # API definitions
+│   ├── http/           # HTTP API specs
+│   └── proto/          # gRPC proto files
+├── deployments/         # Deployment configurations
+│   ├── docker/         # Docker related files
+│   └── kubernetes/     # Kubernetes manifests
+├── test/               # Additional test files
+│   └── benchmark/      # Performance tests
+├── Makefile            # Build automation
+├── Dockerfile          # Docker build file
+├── go.mod              # Go modules file
+└── README.md           # Project documentation
 ```
 ---
 
@@ -45,5 +63,21 @@ Goloves/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/goloves.git
+   git clone https://github.com/Terry-Yuxiang/goloves.git
    cd goloves
+   ```
+
+2. Install dependencies:
+   ```bash
+   go mod download
+   ```
+
+3. Build the service:
+   ```bash
+   make build
+   ```
+
+4. Run the service:
+   ```bash
+   ./bin/idgen
+   ```
